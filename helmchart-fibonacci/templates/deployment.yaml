@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "fibonacci.fullname" . }}
+  labels:
+    {{- include "fibonacci.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.hpa.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "fibonacci.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "fibonacci.labels" . | nindent 8 }}
+    spec:
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        name: {{ .Chart.Name }}
+        ports:
+        - name: http
+          protocol: TCP
+          containerPort: 8060
+        resources:
+            {{- toYaml .Values.resources | nindent 12 }}

@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  fibonacci:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-11-20T21:11:06.09066936Z"
+    description: A Helm chart for Kubernetes
+    digest: b0b2ea8c861d3046c7c48fb78f857973040e27ca64f543ecb9ae7c1940047180
+    name: fibonacci
+    type: application
+    urls:
+    - charts/fibonacci-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-11-20T21:11:06.090236684Z"

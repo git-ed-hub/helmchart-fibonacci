@@ -1,0 +1,47 @@
+# values for fibonacci.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: testsysadmin8/fibonacci
+  pullPolicy: IfNotPresent
+  tag: latest
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 8060
+
+resources:
+  limits:
+    cpu: "200m"
+    memory: 256Mi
+  requests:
+    cpu: "50m"
+    memory: 128Mi
+
+hpa:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
+  # targetMemoryUtilizationPercentage: 80
+
+vpa:
+  enabled: false
+  minAllowed:
+    cpu: "10m"
+    memory: "50Mi"
+  maxAllowed:
+    cpu: "500m"
+    memory: "256Mi"
+
+metricsprometheus:
+  enabled: false
+
+custom_metrics:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  averageValue: 500m # http_requests
+  averageUtilization: 50

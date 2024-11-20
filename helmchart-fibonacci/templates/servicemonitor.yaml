@@ -1,0 +1,21 @@
+{{- if .Values.metricsprometheus.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: kube-prometheus-stack-operator
+    release: monitoring
+    {{- include "fibonacci.labels" . | nindent 4 }}
+  name: {{ include "fibonacci.fullname" . }}
+  namespace: monitoring  # Asegúrate de estar en el mismo namespace del operador
+spec:
+  namespaceSelector:
+    matchNames:
+      - default  # El namespace donde está tu Service de Fibonacci
+  endpoints:
+  - interval: 10s
+    port: http  # Asegúrate de que este puerto sea el correcto
+  selector:
+    matchLabels:
+      {{- include "fibonacci.selectorLabels" . | nindent 6 }}
+{{- end }}
