@@ -1,5 +1,26 @@
 # Helmchart app fibonacci
 
+~~~sh
+helmchart-fibonacci/
+├── charts
+│   └── fibonacci-0.1.0.tgz
+├── Chart.yaml
+├── index.yaml
+├── README.md
+├── templates
+│   ├── custommetrics.yaml
+│   ├── deployment.yaml
+│   ├── _helpers.tpl
+│   ├── hpa.yaml
+│   ├── NOTES.txt
+│   ├── servicemonitor.yaml
+│   ├── service.yaml
+│   ├── tests
+│   │   └── test-connection.yaml
+│   └── vpa.yaml
+└── values.yaml
+~~~
+
 Los valores:
 
 - hpa
